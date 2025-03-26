@@ -43,7 +43,7 @@ export class NodeComponent implements AfterViewInit {
 		if (element === undefined) return;
 		setTimeout(() => {
 			element.style.display = 'block';
-		});
+		}, 400);
 	}
 
 	isViewList = false;
