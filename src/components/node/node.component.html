@@ -1,0 +1,24 @@
+@if (node) {
+<button
+	type="button"
+	[className]="
+		node.is_deleted
+			? 'deleted'
+			: isViewList && this.node.children.length > 0
+			? 'active'
+			: ''
+	"
+	(click)="toggleViewChildrenNode()"
+>
+	<p>{{ node.id }} - {{ node.title }} {{ node.is_deleted ? '(удален)' : '' }}</p>
+	@if( this.node.children.length > 0){
+	<img src="/assets/arrow.svg" />
+	}
+</button>
+@if ( this.node.children.length > 0) {
+<div class="children" #children [@listAnimation]="animationState">
+	@for (child of node.children; track child.id) {
+	<app-node [node]="child"></app-node>
+	}
+</div>
+} }
