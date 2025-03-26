@@ -34,20 +34,13 @@ export const listAnimation = trigger('listAnimation', [
 	animations: [listAnimation],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NodeComponent implements AfterViewInit {
+export class NodeComponent {
 	@Input({ required: true }) node?: ITreeNode;
 
 	@ViewChild('children') childrenElement?: ElementRef<HTMLDivElement>;
-	ngAfterViewInit(): void {
-		const element = this.childrenElement?.nativeElement;
-		if (element === undefined) return;
-		setTimeout(() => {
-			element.style.display = 'block';
-		}, 400);
-	}
 
 	isViewList = false;
-	animationState: 'opened' | 'closed' = 'closed';
+	animationState: 'opened' | 'closed' | 'init' = 'init';
 
 	toggleViewChildrenNode() {
 		this.isViewList = !this.isViewList;

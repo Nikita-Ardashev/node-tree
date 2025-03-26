@@ -16,7 +16,12 @@
 	}
 </button>
 @if ( this.node.children.length > 0) {
-<div class="children" #children [@listAnimation]="animationState">
+<div
+	class="children"
+	#children
+	[@listAnimation]="animationState"
+	[style.display]="animationState === 'init' ? 'none' : 'block'"
+>
 	@for (child of node.children; track child.id) {
 	<app-node [node]="child"></app-node>
 	}
